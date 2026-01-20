@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class TextBehaviour : MonoBehaviour
 {
+    public float textCooldown = 3f;
+
     private void Start()
     {
-        Invoke("SetInactive", 3f); 
+        Invoke("SetInactive", textCooldown); 
     }
 
     public void SetInactive() 

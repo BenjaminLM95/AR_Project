@@ -3,6 +3,7 @@ using UnityEngine;
 public class InfoData : MonoBehaviour
 {
    [SerializeField] private string info;
+    public float textCooldown; 
 
     private void Awake()
     {

@@ -15,10 +15,12 @@ public class GamestateManager : MonoBehaviour
     public string gamestateString;
 
     private UIManager uiManager; 
+    private PointManager pointManager;
 
     private void Awake()
     {
         uiManager = FindFirstObjectByType<UIManager>();
+        pointManager = FindFirstObjectByType<PointManager>();   
 
         ChangeStates(GameState.Menu); 
     }
@@ -55,6 +57,7 @@ public class GamestateManager : MonoBehaviour
     public void GoToGamePlay() 
     {
         ChangeStates(GameState.Gameplay); 
+        pointManager.EnableCouting();
     }
 
     

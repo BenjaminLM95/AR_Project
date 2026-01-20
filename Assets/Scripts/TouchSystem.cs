@@ -16,6 +16,8 @@ public class TouchSystem : MonoBehaviour
 
     private PointManager pointManager;
 
+    public GameObject attackEffects; 
+
     private void Awake()
     {
         pointManager = FindFirstObjectByType<PointManager>(); 
@@ -33,7 +35,8 @@ public class TouchSystem : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Debug.Log("Pressed primary button");
-
+            Vector3 pointerPos = Camera.main.ScreenToViewportPoint(Input.mousePosition); 
+            Instantiate(attackEffects, Camera.main.transform.position, transform.rotation);
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit mHit;
 
@@ -73,9 +76,10 @@ public class TouchSystem : MonoBehaviour
     {
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
-            Debug.Log("Touch");
+            Debug.Log("Touch");           
 
             Touch touch = Input.GetTouch(0);
+            Instantiate(attackEffects, touch.position, transform.rotation); 
             Ray ray = Camera.main.ScreenPointToRay(touch.position);
             RaycastHit hit;
 
@@ -93,6 +97,8 @@ public class TouchSystem : MonoBehaviour
                         Vector3 pos = hit.point;                       
                         pos.y += 0.75f;
                         Instantiate(objPopup, pos, transform.rotation);
+                        TextBehaviour textBehavior = objPopup.GetComponent<TextBehaviour>();    
+                        textBehavior.textCooldown = hit.collider.gameObject.GetComponent<InfoData>().textCooldown;
                     }
 
                     if (hit.transform.tag == "Enemy")
