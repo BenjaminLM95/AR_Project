@@ -6,6 +6,7 @@ public class PointManager : MonoBehaviour
     public TextMeshProUGUI playerScore;    
     public int score;
     public int currentScore;
+    public int finalScore; 
 
     private bool canCount = false;
 
@@ -69,6 +70,7 @@ public class PointManager : MonoBehaviour
 
     public void TimesUp() 
     {
+        finalScore = score; 
         levelManager.ResultScreen(); 
     }
 
