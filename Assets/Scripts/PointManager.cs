@@ -7,8 +7,17 @@ public class PointManager : MonoBehaviour
     public int score;
     public int currentScore;
 
-    private bool canCount = false; 
+    private bool canCount = false;
 
+    private LevelManager levelManager;
+    [SerializeField] private TimerCounting timerCounting;
+    [SerializeField] private GamestateManager gameStateManager; 
+
+    private void Awake()
+    {
+        levelManager = FindFirstObjectByType<LevelManager>();
+        gameStateManager = FindFirstObjectByType<GamestateManager>(); 
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,6 +28,15 @@ public class PointManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(gameStateManager.gamestateString == "Gameplay") 
+        {
+            if (timerCounting == null)
+            {
+                timerCounting = FindFirstObjectByType<TimerCounting>();
+            }
+        }
+
+
         if(score != currentScore) 
         {
             UpdateScore(); 
@@ -48,4 +66,26 @@ public class PointManager : MonoBehaviour
     {  
         canCount = false; 
     }
+
+    public void TimesUp() 
+    {
+        levelManager.ResultScreen(); 
+    }
+
+    public void ResetTimer() 
+    {
+        if(timerCounting == null) 
+        {
+            timerCounting = FindFirstObjectByType<TimerCounting>(); 
+        }
+
+        timerCounting.ResetTimer(); 
+    }
+
+    public void ResetLevelStats() 
+    {
+        ResetTimer();
+        currentScore = 0; 
+    }
+
 }

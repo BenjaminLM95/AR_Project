@@ -16,7 +16,9 @@ public class TouchSystem : MonoBehaviour
 
     private PointManager pointManager;
 
-    public GameObject attackEffects; 
+    public GameObject attackEffects;
+
+    public bool canTouch = false; 
 
     private void Awake()
     {
@@ -26,8 +28,11 @@ public class TouchSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ClickingAction();
-        TouchingAction(); 
+        if (canTouch)
+        {
+            ClickingAction();
+            TouchingAction();
+        }
     }
 
     private void ClickingAction() 
@@ -37,6 +42,7 @@ public class TouchSystem : MonoBehaviour
             Debug.Log("Pressed primary button");
             Vector3 pointerPos = Camera.main.ScreenToViewportPoint(Input.mousePosition); 
             Instantiate(attackEffects, Camera.main.transform.position, transform.rotation);
+            SoundManager.instance.PlaySoundFXClip("ShootingClip"); 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit mHit;
 
@@ -79,7 +85,8 @@ public class TouchSystem : MonoBehaviour
             Debug.Log("Touch");           
 
             Touch touch = Input.GetTouch(0);
-            Instantiate(attackEffects, touch.position, transform.rotation); 
+            Instantiate(attackEffects, touch.position, transform.rotation);
+            SoundManager.instance.PlaySoundFXClip("ShootingClip");
             Ray ray = Camera.main.ScreenPointToRay(touch.position);
             RaycastHit hit;
 

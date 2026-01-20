@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.XR.ARFoundation;
-using UnityEngine.XR.ARSubsystems; 
+using UnityEngine.XR.ARSubsystems;
+using System.Linq;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -9,9 +10,12 @@ public class EnemySpawner : MonoBehaviour
 
     [Header("Spawn System")]
     [SerializeField] private GameObject goPrefab;
+    [SerializeField] private GameObject ghostType2; 
     [SerializeField] private float cooldown = 5f;
 
     private float lastSpawnTime;
+    private float spawningTimeCount = 0;
+    private float enemyTwoSpawnTime = 0; 
 
 
     private void OnEnable()
@@ -22,6 +26,36 @@ public class EnemySpawner : MonoBehaviour
     private void OnDisable()
     {
         planeManager.planesChanged -= OnPlanesChanged; 
+    }
+
+    private void Start()
+    {
+        enemyTwoSpawnTime = GettingRandomTime(); 
+    }
+
+    private void Update()
+    {
+        spawningTimeCount += Time.deltaTime; 
+
+        if(spawningTimeCount >= enemyTwoSpawnTime) 
+        {
+            SpawningEnemyTwo(); 
+            spawningTimeCount = 0f;
+            enemyTwoSpawnTime = GettingRandomTime();
+        }
+
+    }
+
+    private float GettingRandomTime() 
+    {
+        System.Random rnd = new System.Random();
+        int intRnd = rnd.Next(5, 20);
+        return (float)intRnd; 
+    }
+
+    private void SpawningEnemyTwo() 
+    {
+        Instantiate(ghostType2, new Vector3(0f, 0f, 0f), Quaternion.identity);
     }
 
     private void OnPlanesChanged(ARPlanesChangedEventArgs args) 

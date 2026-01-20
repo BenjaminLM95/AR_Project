@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &7523028710302914725
+--- !u!1001 &5415313707460741454
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 8242d247159ec462794ba075ca8c938e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.8937217
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8242d247159ec462794ba075ca8c938e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8242d247159ec462794ba075ca8c938e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 3.3565927
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8242d247159ec462794ba075ca8c938e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8242d247159ec462794ba075ca8c938e, type: 3}
       propertyPath: m_Name
-      value: Ghost_animation
+      value: GhostType2
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8242d247159ec462794ba075ca8c938e, type: 3}
       propertyPath: m_TagString
@@ -62,26 +62,29 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8242d247159ec462794ba075ca8c938e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1486721761983035288}
+      addedObject: {fileID: 5068416857692261962}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8242d247159ec462794ba075ca8c938e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1606903813206599257}
+      addedObject: {fileID: 7270318545479755981}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8242d247159ec462794ba075ca8c938e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3800207316289652401}
+      addedObject: {fileID: 8139876414911388978}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8242d247159ec462794ba075ca8c938e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4329449660861799368}
   m_SourcePrefab: {fileID: 100100000, guid: 8242d247159ec462794ba075ca8c938e, type: 3}
---- !u!1 &7252557991237821940 stripped
+--- !u!1 &5180941610846614559 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8242d247159ec462794ba075ca8c938e, type: 3}
-  m_PrefabInstance: {fileID: 7523028710302914725}
+  m_PrefabInstance: {fileID: 5415313707460741454}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &1486721761983035288
+--- !u!65 &5068416857692261962
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7252557991237821940}
+  m_GameObject: {fileID: 5180941610846614559}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -96,13 +99,13 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5286145, y: 0.8381473, z: 0.455437}
   m_Center: {x: 0.005809486, y: 0.5193121, z: -0.07117382}
---- !u!114 &1606903813206599257
+--- !u!114 &7270318545479755981
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7252557991237821940}
+  m_GameObject: {fileID: 5180941610846614559}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6f17310979bb8bc409d7bc10ebea601c, type: 3}
@@ -110,18 +113,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateSpeed: 4
   objectRotation: {x: 0, y: 5, z: 0}
---- !u!114 &3800207316289652401
+--- !u!114 &8139876414911388978
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7252557991237821940}
-  m_Enabled: 1
+  m_GameObject: {fileID: 5180941610846614559}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8d96d5494b359a942af9162e09519376, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraTransform: {fileID: 0}
-  distanceFromCamera: 0
   soulAfterDeath: {fileID: 7226888052703040409, guid: 7ec363c8df426644ea85f8d6d570561c, type: 3}
+--- !u!114 &4329449660861799368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5180941610846614559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 781298dae5dccd74d82aec61358a6578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

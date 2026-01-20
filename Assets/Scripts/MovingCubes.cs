@@ -1,13 +1,14 @@
 using UnityEngine;
-using System; 
+
 
 public class MovingCubes : MonoBehaviour
 {
     private Vector3 initialPos;
-    private float radius = 7; 
+    [SerializeField] private float radius; 
 
     private void Awake()
     {
+        radius = ChangingRadius();          
         initialPos = transform.position;
     }    
 
@@ -23,6 +24,13 @@ public class MovingCubes : MonoBehaviour
         float posZ = Mathf.Sin(Time.time) * radius;
 
         transform.position = new Vector3(posX, transform.position.y, posZ); 
+    }
+
+    public int ChangingRadius() 
+    {
+        System.Random rnd = new System.Random();
+        int rndNum = rnd.Next(1, 8);
+        return rndNum; 
     }
 
 }

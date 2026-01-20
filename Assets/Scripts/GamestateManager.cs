@@ -6,7 +6,8 @@ public class GamestateManager : MonoBehaviour
     {
         Menu,
         Pause,
-        Gameplay
+        Gameplay,
+        Results
     
     }
 
@@ -16,11 +17,13 @@ public class GamestateManager : MonoBehaviour
 
     private UIManager uiManager; 
     private PointManager pointManager;
+    private TouchSystem touchSystem; 
 
     private void Awake()
     {
         uiManager = FindFirstObjectByType<UIManager>();
-        pointManager = FindFirstObjectByType<PointManager>();   
+        pointManager = FindFirstObjectByType<PointManager>();
+        touchSystem = FindFirstObjectByType<TouchSystem>(); 
 
         ChangeStates(GameState.Menu); 
     }
@@ -40,11 +43,24 @@ public class GamestateManager : MonoBehaviour
             case GameState.Menu:
                 uiManager.GetToMainMenu();
                 Time.timeScale = 0f;
+                touchSystem.canTouch = false; 
                 break;
             case GameState.Gameplay:
                 uiManager.GetToGamePlay();
                 Time.timeScale = 1f;
+                touchSystem.canTouch = true; 
+                break;
+            case GameState.Pause:
+                uiManager.PauseGame();
+                Time.timeScale = 0f;
+                touchSystem.canTouch = false;
+                break;
+            case GameState.Results:
+                uiManager.GoToResult();
+                Time.timeScale = 0f;
+                touchSystem.canTouch = false;
                 break; 
+            
         }
     }
 
@@ -58,6 +74,11 @@ public class GamestateManager : MonoBehaviour
     {
         ChangeStates(GameState.Gameplay); 
         pointManager.EnableCouting();
+    }
+
+    public void GoToResultScreen() 
+    {
+        ChangeStates(GameState.Results); 
     }
 
     

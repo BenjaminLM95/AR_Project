@@ -1,13 +1,19 @@
 using UnityEngine;
 using TMPro;
 
+
 public class TimerCounting : MonoBehaviour
 {
-    public float timeRemaining = 180f; // 3 minutes
+    public float timeMax = 180f; // 3 minutes
+    public float timeRemaining;     
     public bool timerIsRunning = true;
 
     private PointManager pointManager;
-    public TextMeshProUGUI timerText; 
+    public TextMeshProUGUI timerText;
+
+    private int minutes;
+    private int seconds; 
+    
 
     private void Awake()
     {
@@ -15,6 +21,8 @@ public class TimerCounting : MonoBehaviour
         {
             pointManager = FindFirstObjectByType<PointManager>();
         }
+
+        timeRemaining = timeMax; 
     }
 
     void Update()
@@ -32,9 +40,7 @@ public class TimerCounting : MonoBehaviour
         if (timeRemaining > 0)
         {
             timeRemaining -= Time.deltaTime;
-            int minutes = Mathf.FloorToInt(timeRemaining / 60);
-            int seconds = Mathf.FloorToInt(timeRemaining % 60);
-            timerText.text = $"{minutes:00}:{seconds:00}";
+            ShowTimeOnScreen(); 
         }
         else
         {
@@ -49,6 +55,24 @@ public class TimerCounting : MonoBehaviour
     {
         Debug.Log("Time's up!");
         pointManager.DisableCounting();
+        pointManager.TimesUp(); 
         // End game, show results, etc.
     }
+
+
+    public void ResetTimer() 
+    {
+        timeRemaining = timeMax;
+        ShowTimeOnScreen();
+        timerIsRunning = true; 
+        Debug.Log("Reset Time" + timeRemaining); 
+    }
+
+    public void ShowTimeOnScreen() 
+    {
+        minutes = Mathf.FloorToInt(timeRemaining / 60);
+        seconds = Mathf.FloorToInt(timeRemaining % 60);
+        timerText.text = $"{minutes:00}:{seconds:00}";
+    }
+
 }
